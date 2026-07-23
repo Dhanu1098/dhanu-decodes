@@ -90,12 +90,10 @@
     });
   }
 
-  // Run on components-loaded, or immediately if components already loaded
+  // Run on DOMContentLoaded (components now baked into HTML)
   if (document.readyState === 'loading') {
-    document.addEventListener('components-loaded', init);
+    document.addEventListener('DOMContentLoaded', init);
   } else {
-    // DOMContentLoaded already fired, try init + listen for components
-    setTimeout(init, 100);
-    document.addEventListener('components-loaded', init);
+    init();
   }
 })();

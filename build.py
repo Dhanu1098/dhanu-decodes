@@ -95,12 +95,16 @@ def render_page(
 ) -> str:
     """Populate template placeholders with page data."""
     template = load_template()
+    header = load_component("header")
+    footer = load_component("footer")
     return (
         template.replace("{{CONTENT}}", content)
         .replace("{{TITLE}}", title)
         .replace("{{DESCRIPTION}}", description or title)
         .replace("{{OG_TITLE}}", og_title or title)
         .replace("{{OG_DESCRIPTION}}", og_description or description or title)
+        .replace("{{HEADER}}", header)
+        .replace("{{FOOTER}}", footer)
     )
 
 

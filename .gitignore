@@ -1,0 +1,10 @@
+# Dhanu Decodes — Git Ignore
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+node_modules/
+.sass-cache/
+
+# Build outputs are tracked (GitHub Pages needs them)
+# index.html, articles/*.html, disclosure.html are committed

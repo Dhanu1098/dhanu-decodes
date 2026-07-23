@@ -25,17 +25,8 @@
   --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Light theme */
-[data-theme="light"] {
-  --bg: #f8f9fc;
-  --surface: #ffffff;
-  --surface2: #f1f3f9;
-  --border: #e2e4ed;
-  --text: #1a1a2e;
-  --text2: #4a4a6a;
-  --text3: #7a7a9a;
-  --accent-glow: rgba(99,102,241,0.08);
-}
+/* Light theme — DISABLED (always use dark) */
+/* [data-theme="light"] { ... } — removed, site is dark-only */
 
 /* ===== RESET & BASE ===== */
 *,
@@ -75,9 +66,6 @@ ul, ol { list-style-position: inside; }
   -webkit-backdrop-filter: blur(18px);
   border-bottom: 1px solid var(--border);
   transition: background var(--transition-smooth), border-color var(--transition-smooth);
-}
-[data-theme="light"] .navbar {
-  background: rgba(255,255,255,0.85);
 }
 .nav-inner {
   max-width: 1140px; margin: 0 auto;
@@ -142,8 +130,6 @@ ul, ol { list-style-position: inside; }
 .theme-toggle:hover { border-color: var(--accent); color: var(--text); }
 .theme-icon-sun { display: none; }
 .theme-icon-moon { display: block; }
-[data-theme="light"] .theme-icon-sun { display: block; }
-[data-theme="light"] .theme-icon-moon { display: none; }
 
 @media (max-width: 720px) {
   .mobile-menu-toggle { display: flex; }

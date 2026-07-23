@@ -1,77 +1,45 @@
 /**
  * Dhanu Decodes — Main JavaScript
- * Scroll animations, mobile menu, theme toggle, scroll-to-top, component loader
+ * Scroll animations, mobile menu, scroll-to-top
  */
 (function () {
   'use strict';
 
-  /* ====== DOM READY ====== */
-  function domReady(fn) {
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', fn);
-    } else {
-      fn();
-    }
+  // Wait for components to load before initializing
+  function init() {
+    initMobileMenu();
+    initScrollAnimations();
+    initScrollToTop();
+    initSmoothScroll();
   }
 
-  /* ====== THEME TOGGLE ====== */
-  function initTheme() {
-    const saved = localStorage.getItem('dhanu-decodes-theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const theme = saved || (prefersDark ? 'dark' : 'light');
-    if (theme === 'light') {
-      document.documentElement.setAttribute('data-theme', 'light');
-    }
-    // else default is dark (no attribute needed since CSS defaults to dark)
-  }
-
-  function setupThemeToggle() {
-    const toggle = document.querySelector('.theme-toggle');
-    if (!toggle) return;
-    toggle.addEventListener('click', function () {
-      const current = document.documentElement.getAttribute('data-theme');
-      if (current === 'light') {
-        document.documentElement.removeAttribute('data-theme');
-        localStorage.setItem('dhanu-decodes-theme', 'dark');
-      } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('dhanu-decodes-theme', 'light');
-      }
-    });
-  }
-
-  /* ====== MOBILE MENU ====== */
-  function setupMobileMenu() {
+  // --- Mobile Menu ---
+  function initMobileMenu() {
     const toggle = document.querySelector('.mobile-menu-toggle');
-    const nav = document.querySelector('.nav-links');
-    if (!toggle || !nav) return;
+    const navLinks = document.querySelector('.nav-links');
+    if (!toggle || !navLinks) return;
 
     toggle.addEventListener('click', function () {
       const expanded = toggle.getAttribute('aria-expanded') === 'true';
       toggle.setAttribute('aria-expanded', String(!expanded));
       toggle.classList.toggle('active');
-      nav.classList.toggle('active');
-      document.body.style.overflow = expanded ? '' : 'hidden';
+      navLinks.classList.toggle('active');
     });
 
     // Close menu on link click
-    nav.querySelectorAll('a').forEach(function (link) {
+    navLinks.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
         toggle.setAttribute('aria-expanded', 'false');
         toggle.classList.remove('active');
-        nav.classList.remove('active');
-        document.body.style.overflow = '';
+        navLinks.classList.remove('active');
       });
     });
   }
 
-  /* ====== SCROLL ANIMATIONS (Intersection Observer) ====== */
-  function setupScrollAnimations() {
-    var observerOptions = {
-      root: null,
-      rootMargin: '0px 0px -60px 0px',
-      threshold: 0.1,
-    };
+  // --- Scroll Animations (fade in cards on scroll) ---
+  function initScrollAnimations() {
+    var cards = document.querySelectorAll('.article-card:not(.visible)');
+    if (!cards.length) return;
 
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -80,15 +48,16 @@
           observer.unobserve(entry.target);
         }
       });
-    }, observerOptions);
+    }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
 
-    document.querySelectorAll('.article-card, .animate-on-scroll').forEach(function (el) {
-      observer.observe(el);
+    cards.forEach(function (card, i) {
+      card.style.transitionDelay = (i * 0.1) + 's';
+      observer.observe(card);
     });
   }
 
-  /* ====== SCROLL TO TOP BUTTON ====== */
-  function setupScrollToTop() {
+  // --- Scroll to Top Button ---
+  function initScrollToTop() {
     var btn = document.querySelector('.scroll-top-btn');
     if (!btn) return;
 
@@ -96,11 +65,7 @@
     window.addEventListener('scroll', function () {
       if (!ticking) {
         requestAnimationFrame(function () {
-          if (window.scrollY > 400) {
-            btn.classList.add('visible');
-          } else {
-            btn.classList.remove('visible');
-          }
+          btn.classList.toggle('visible', window.scrollY > 500);
           ticking = false;
         });
         ticking = true;
@@ -112,28 +77,25 @@
     });
   }
 
-  /* ====== SMOOTH SCROLL FOR ANCHOR LINKS ====== */
-  function setupSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-      anchor.addEventListener('click', function (e) {
-        var targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        var target = document.querySelector(targetId);
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
+  // --- Smooth Scroll for Anchor Links ---
+  function initSmoothScroll() {
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest('a[href^="#"]');
+      if (!link) return;
+      var target = document.querySelector(link.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
     });
   }
 
-  /* ====== INIT ====== */
-  domReady(function () {
-    initTheme();
-    setupThemeToggle();
-    setupMobileMenu();
-    setupScrollAnimations();
-    setupScrollToTop();
-    setupSmoothScroll();
-  });
+  // Run on components-loaded, or immediately if components already loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('components-loaded', init);
+  } else {
+    // DOMContentLoaded already fired, try init + listen for components
+    setTimeout(init, 100);
+    document.addEventListener('components-loaded', init);
+  }
 })();

@@ -1,14 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dhanu Decodes — AI Tools Reviews & News</title>
-<meta name="description" content="Honest AI tool reviews, latest AI news, and tutorials.">
-<meta property="og:title" content="Dhanu Decodes — AI Tools Reviews & News">
-<meta property="og:description" content="AI tool reviews, news, and honest comparisons by Dhanu.">
+<title>Dhanu Decodes — Honest AI Tool Reviews</title>
+<meta name="description" content="Real AI tool reviews by a real creator. No bots, no fake reviews — just honest testing.">
+<meta property="og:title" content="Dhanu Decodes — Honest AI Tool Reviews">
+<meta property="og:description" content="AI tools tested by a real creator. Honest reviews, no BS.">
 <style>
+/* ===== VARIABLES — LIGHT (default) + DARK ===== */
 :root {
+  --bg: #ffffff;
+  --surface: #f8f9fb;
+  --surface2: #eef0f5;
+  --border: #e2e5ea;
+  --text: #1a1a2e;
+  --text2: #4a4a6a;
+  --text3: #8888a0;
+  --accent: #6366f1;
+  --accent2: #4f46e5;
+  --green: #059669;
+  --amber: #d97706;
+  --red: #dc2626;
+  --rad: 14px;
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --header-h: 64px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.10);
+}
+[data-theme="dark"] {
   --bg: #0a0a0f;
   --surface: #0e0e17;
   --surface2: #141420;
@@ -16,240 +37,289 @@
   --text: #e4e4ed;
   --text2: #a0a0b8;
   --text3: #6b6b80;
-  --accent: #6366f1;
-  --accent2: #818cf8;
-  --green: #22c55e;
-  --amber: #f59e0b;
-  --red: #ef4444;
-  --rad: 14px;
-  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  --header-h: 60px;
+  --accent: #818cf8;
+  --accent2: #6366f1;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.5);
 }
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;scroll-padding-top:var(--header-h);font-size:16px;}
-body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
-a{color:var(--accent2);text-decoration:none;transition:color 0.2s;}
-a:hover{color:var(--accent);}
-img{max-width:100%;height:auto;display:block;}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
-.navbar{position:sticky;top:0;z-index:100;background:rgba(10,10,15,0.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--border);}
-.nav-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:var(--header-h);}
-.logo{display:flex;align-items:center;gap:10px;font-size:1.2em;font-weight:800;color:var(--text);letter-spacing:-0.02em;}
-.logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:0.65em;color:#fff;transition:transform 0.2s;}
-.logo:hover .logo-icon{transform:scale(1.05);}
-.nav-links{display:flex;list-style:none;gap:28px;align-items:center;}
-.nav-links a{color:var(--text2);font-size:0.9em;font-weight:500;position:relative;}
-.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transition:transform 0.2s;border-radius:2px;}
-.nav-links a:hover{color:var(--text);}
-.nav-links a:hover::after{transform:scaleX(1);}
-.mobile-menu-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;z-index:101;}
-.hamburger-line{width:24px;height:2px;background:var(--text);border-radius:2px;transition:transform 0.3s,opacity 0.3s;}
-.mobile-menu-toggle.active .hamburger-line:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
-.mobile-menu-toggle.active .hamburger-line:nth-child(2){opacity:0;}
-.mobile-menu-toggle.active .hamburger-line:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
-@media(max-width:720px){
-  .mobile-menu-toggle{display:flex;}
-  .nav-links{position:fixed;top:var(--header-h);left:0;right:0;bottom:0;background:var(--bg);flex-direction:column;justify-content:center;gap:32px;transform:translateX(100%);transition:transform 0.3s;z-index:99;padding:40px;}
-  .nav-links.active{transform:translateX(0);}
-  .nav-links a{font-size:1.3em;}
-}
-.hero{max-width:750px;margin:70px auto 50px;text-align:center;padding:0 24px;opacity:0;transform:translateY(20px);animation:fadeUp 0.6s ease 0.1s forwards;}
-.hero-badge{display:inline-block;background:rgba(99,102,241,0.12);color:var(--accent2);font-size:0.85em;font-weight:600;padding:6px 18px;border-radius:20px;margin-bottom:20px;}
-.hero h1{font-size:2.6em;font-weight:800;line-height:1.15;margin-bottom:16px;}
-.gradient-text{background:linear-gradient(135deg,var(--accent),#a78bfa,var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.hero p{color:var(--text2);font-size:1.1em;max-width:600px;margin:0 auto 32px;line-height:1.65;}
-.hero-stats{display:flex;justify-content:center;gap:50px;}
-.stat-item{text-align:center;}
-.stat-num{font-size:2em;font-weight:800;color:var(--accent2);}
-.stat-label{font-size:0.8em;color:var(--text3);margin-top:2px;font-weight:500;}
-.section-heading{max-width:1100px;margin:0 auto 24px;padding:0 20px;}
-.section-heading h2{font-size:1.6em;font-weight:700;color:var(--text);margin-bottom:4px;}
-.section-heading p{color:var(--text3);font-size:0.95em;}
-.articles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px;max-width:1100px;margin:0 auto 30px;padding:0 20px;}
-.article-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rad);text-decoration:none;color:inherit;display:flex;flex-direction:column;overflow:hidden;transition:transform 0.3s,border-color 0.3s,box-shadow 0.3s;}
-.article-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 12px 40px rgba(99,102,241,0.15);}
-.card-img{height:180px;background:var(--surface2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
-.card-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,var(--surface) 100%);pointer-events:none;z-index:1;}
-.card-img-inner{position:relative;z-index:0;width:100%;height:100%;padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;}
-.ai-chip-row{display:flex;gap:14px;}
-.ai-chip{padding:10px 18px;border-radius:12px;font-size:0.82em;font-weight:700;color:#fff;text-align:center;transition:transform 0.2s;}
-.ai-chip-1{background:linear-gradient(135deg,#6366f1,#8b5cf6);}
-.ai-chip-2{background:linear-gradient(135deg,#0ea5e9,#6366f1);}
-.ai-chip-3{background:linear-gradient(135deg,#22c55e,#0ea5e9);}
-.ai-chip small{display:block;font-size:0.65em;opacity:0.75;font-weight:400;margin-top:2px;}
-.article-card:hover .ai-chip{transform:translateY(-2px);}
-.img-search-bar{display:flex;align-items:center;gap:8px;background:#0a0a1a;border:1px solid #2a2a40;border-radius:20px;padding:8px 14px;width:90%;max-width:280px;}
-.img-search-icon{width:14px;height:14px;border:2px solid #666;border-radius:50%;position:relative;}
-.img-search-icon::after{content:'';position:absolute;bottom:-3px;right:-3px;width:6px;height:2px;background:#666;transform:rotate(45deg);border-radius:1px;}
-.img-search-input{color:var(--text3);font-size:0.75em;flex:1;}
-.img-rank-list{width:90%;max-width:280px;display:flex;flex-direction:column;gap:6px;margin-top:8px;}
-.img-rank-row{display:flex;align-items:center;gap:8px;}
-.img-rank-num{color:var(--text3);font-size:0.7em;width:18px;text-align:right;}
-.img-rank-bar{height:5px;background:var(--accent);border-radius:3px;opacity:0.6;}
-.img-rank-row:nth-child(2) .img-rank-bar{opacity:0.45;}
-.img-rank-row:nth-child(3) .img-rank-bar{opacity:0.3;}
-.img-rank-label{color:var(--text3);font-size:0.65em;white-space:nowrap;}
-.card-body{padding:20px;}
-.card-category{display:inline-block;background:rgba(99,102,241,0.12);color:var(--accent2);font-size:0.75em;font-weight:600;padding:4px 12px;border-radius:12px;margin-bottom:10px;}
-.card-body h3{font-size:1.1em;font-weight:700;margin-bottom:6px;line-height:1.35;}
-.card-body p{color:var(--text3);font-size:0.88em;line-height:1.55;margin-bottom:14px;}
-.card-meta{display:flex;gap:14px;font-size:0.8em;color:var(--text3);align-items:center;}
-.card-footer{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;border-top:1px solid var(--border);font-size:0.82em;margin-top:auto;}
-.stars{color:var(--amber);letter-spacing:1px;}
-.read-time{color:var(--text3);font-size:0.85em;}
-.cta-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--rad);max-width:800px;margin:60px auto 60px;padding:44px 40px;text-align:center;background-image:radial-gradient(ellipse at top,rgba(99,102,241,0.12),transparent 60%);}
-.cta-bar h3{font-size:1.3em;margin-bottom:8px;}
-.cta-bar p{color:var(--text3);margin-bottom:18px;font-size:0.95em;}
-.cta-btn{display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:700;font-size:1em;transition:transform 0.2s,box-shadow 0.2s;border:none;cursor:pointer;}
-.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(99,102,241,0.4);}
-.social-section{max-width:1100px;margin:0 auto 60px;padding:0 20px;text-align:center;}
-.social-section h2{font-size:1.6em;margin-bottom:12px;}
-.social-section>p{color:var(--text3);margin-bottom:36px;max-width:600px;margin-left:auto;margin-right:auto;}
-.social-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
-.social-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rad);padding:32px 24px;text-align:center;text-decoration:none;color:inherit;display:block;transition:transform 0.3s,border-color 0.3s;}
-.social-card:hover{transform:translateY(-3px);border-color:var(--accent);}
-.social-card .social-icon{width:48px;height:48px;margin:0 auto 14px;background:rgba(99,102,241,0.12);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4em;}
-.social-card h4{font-size:1.05em;margin-bottom:6px;}
-.social-card p{color:var(--text3);font-size:0.85em;line-height:1.5;}
-.trust-section{max-width:1100px;margin:0 auto 60px;padding:0 20px;text-align:center;}
-.trust-section h2{font-size:1.6em;margin-bottom:44px;}
-.trust-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;}
-.trust-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rad);padding:36px 24px;text-align:center;transition:border-color 0.3s,transform 0.3s;}
-.trust-card:hover{border-color:var(--accent);transform:translateY(-2px);}
-.trust-icon{margin-bottom:18px;}
-.trust-card h4{font-size:1.05em;margin-bottom:12px;font-weight:700;}
-.trust-card p{color:var(--text3);font-size:0.88em;line-height:1.65;}
-.footer{border-top:1px solid var(--border);background:var(--surface);padding:56px 24px 32px;}
-.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px;}
-.footer-brand p{color:var(--text3);font-size:0.88em;line-height:1.65;margin-top:10px;}
-.footer-col{display:flex;flex-direction:column;gap:10px;}
-.footer-col h4{font-size:0.72em;color:var(--text3);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:6px;font-weight:700;}
-.footer-col a{color:var(--text2);text-decoration:none;font-size:0.88em;transition:color 0.2s;}
-.footer-col a:hover{color:var(--text);}
-.footer-bottom{text-align:center;color:var(--text3);font-size:0.8em;margin-top:36px;padding-top:24px;border-top:1px solid var(--border);}
-.article-container{max-width:780px;margin:0 auto;padding:30px 24px 60px;}
-.breadcrumb{margin-bottom:24px;font-size:0.85em;color:var(--text3);display:flex;gap:6px;align-items:center;}
-.breadcrumb a{color:var(--accent2);font-weight:500;}
-.breadcrumb a:hover{text-decoration:underline;}
-.article-header{margin-bottom:40px;}
-.badge{display:inline-block;background:rgba(99,102,241,0.12);color:var(--accent2);font-size:0.75em;font-weight:600;padding:5px 14px;border-radius:14px;margin-bottom:16px;}
-.article-header h1{font-size:2.2em;font-weight:800;line-height:1.2;margin-bottom:14px;}
-.meta{display:flex;gap:20px;color:var(--text3);font-size:0.88em;flex-wrap:wrap;}
-.article-body{font-size:1.08em;line-height:1.85;color:var(--text2);}
-.article-body p{margin:20px 0;}
-.article-body h2{font-size:1.45em;margin:44px 0 16px;color:var(--accent2);font-weight:700;line-height:1.3;}
-.article-body h3{font-size:1.2em;margin:30px 0 12px;font-weight:700;color:var(--text);}
-.article-body ul,.article-body ol{margin:18px 0;padding-left:24px;}
-.article-body li{margin:10px 0;}
-.cta-box{background:var(--surface);border:1px solid var(--accent);border-radius:var(--rad);padding:28px;margin:28px 0;text-align:center;background-image:radial-gradient(ellipse at top,rgba(99,102,241,0.12),transparent 70%);}
-.cta-box h3{color:var(--accent2)!important;margin-bottom:8px!important;margin-top:0!important;font-size:1.2em!important;}
-.cta-box p{color:var(--text2);margin-bottom:16px!important;}
-.comparison-table{width:100%;border-collapse:collapse;margin:28px 0;font-size:0.92em;border-radius:var(--rad);overflow:hidden;}
-.comparison-table th{background:var(--surface2);text-align:left;padding:14px 16px;color:var(--text2);font-weight:700;border-bottom:2px solid var(--border);}
-.comparison-table td{padding:12px 16px;border-bottom:1px solid var(--border);}
-.comparison-table tbody tr{transition:background 0.2s;}
-.comparison-table tbody tr:hover{background:var(--surface2);}
-.pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:28px 0;}
-.pros,.cons{background:var(--surface);border:1px solid var(--border);border-radius:var(--rad);padding:24px;}
-.pros{border-left:3px solid var(--green);}
-.cons{border-left:3px solid var(--red);}
-.pros h4{color:var(--green);margin-bottom:12px;font-weight:700;}
-.cons h4{color:var(--red);margin-bottom:12px;font-weight:700;}
-.pros ul,.cons ul{padding-left:18px;}
-.pros li,.cons li{margin:6px 0;}
-.verdict{background:var(--surface);border:2px solid var(--accent);border-radius:var(--rad);padding:32px;margin:36px 0;text-align:center;}
-.verdict h2{color:var(--accent2)!important;margin-top:0!important;margin-bottom:16px!important;}
-.verdict .cta-btn{margin-top:14px;}
-.faq dt{font-weight:700;margin-top:24px;color:var(--text);font-size:1.05em;}
-.faq dd{margin:10px 0 0;color:var(--text2);font-size:0.98em;line-height:1.7;}
-.disclosure-note{background:var(--surface2);border:1px solid var(--border);border-radius:var(--rad);padding:18px 22px;margin:36px 0 0;font-size:0.88em;color:var(--text3);line-height:1.7;}
-.disclosure-note a{color:var(--accent2);font-weight:500;}
-.scroll-top-btn{position:fixed;bottom:30px;right:30px;z-index:99;width:44px;height:44px;border-radius:50%;background:var(--accent);color:#fff;border:none;cursor:pointer;font-size:1em;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(20px);pointer-events:none;transition:opacity 0.3s,transform 0.3s,background 0.2s;box-shadow:0 4px 15px rgba(99,102,241,0.3);}
-.scroll-top-btn.visible{opacity:1;transform:translateY(0);pointer-events:auto;}
-.scroll-top-btn:hover{background:var(--accent2);transform:translateY(-2px);}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:var(--header-h);font-size:16px}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;transition:background 0.3s,color 0.3s}
+a{color:var(--accent2);text-decoration:none;transition:color 0.2s}
+a:hover{color:var(--accent)}
+img{max-width:100%;height:auto}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+
+/* ===== NAVBAR ===== */
+.navbar{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border);box-shadow:var(--shadow-sm);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.nav-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:var(--header-h)}
+.logo{display:flex;align-items:center;gap:10px;font-size:1.15em;font-weight:800;color:var(--text);letter-spacing:-0.02em}
+.logo-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:0.6em;color:#fff}
+.nav-right{display:flex;align-items:center;gap:8px}
+.nav-links{display:flex;list-style:none;gap:24px;align-items:center}
+.nav-links a{color:var(--text2);font-size:0.9em;font-weight:500}
+.nav-links a:hover{color:var(--accent2)}
+
+/* Theme Toggle */
+.theme-toggle{width:52px;height:28px;border-radius:14px;background:var(--surface2);border:1px solid var(--border);cursor:pointer;position:relative;transition:background 0.3s;padding:0}
+.theme-toggle::after{content:'';position:absolute;width:22px;height:22px;border-radius:50%;background:var(--accent);top:2px;left:2px;transition:transform 0.3s;box-shadow:0 1px 4px rgba(0,0,0,0.2)}
+[data-theme="dark"] .theme-toggle::after{transform:translateX(24px)}
+.theme-toggle:hover::after{box-shadow:0 2px 8px rgba(99,102,241,0.4)}
+
+.mobile-menu-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;z-index:101}
+.hamburger-line{width:22px;height:2px;background:var(--text);border-radius:2px;transition:0.3s}
+.mobile-menu-toggle.active .hamburger-line:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.mobile-menu-toggle.active .hamburger-line:nth-child(2){opacity:0}
+.mobile-menu-toggle.active .hamburger-line:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+/* ===== HERO — Two Column ===== */
+.hero{max-width:1100px;margin:0 auto;padding:60px 24px 50px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.hero-text h1{font-size:2.5em;font-weight:800;line-height:1.15;margin-bottom:16px;letter-spacing:-0.03em}
+.gradient-text{background:linear-gradient(135deg,var(--accent),#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-text p{color:var(--text2);font-size:1.08em;line-height:1.65;margin-bottom:24px;max-width:480px}
+.hero-stats{display:flex;gap:32px;flex-wrap:wrap}
+.hero-stat{padding:10px 18px;background:var(--surface);border:1px solid var(--border);border-radius:10px;text-align:center;min-width:100px}
+.hero-stat .stat-val{font-size:1.4em;font-weight:800;color:var(--accent2)}
+.hero-stat .stat-label{font-size:0.75em;color:var(--text3);margin-top:2px}
+.hero-visual{display:flex;align-items:center;justify-content:center}
+.hero-visual svg{max-width:100%;height:auto}
+
+/* ===== TRUST BAR ===== */
+.trust-bar{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:28px 24px}
+.trust-bar-inner{max-width:1000px;margin:0 auto;display:flex;justify-content:center;gap:48px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:10px;font-size:0.9em;color:var(--text2)}
+.trust-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1em;flex-shrink:0}
+.trust-icon.green{background:#dcfce7;color:var(--green)}
+.trust-icon.purple{background:#ede9fe;color:var(--accent)}
+.trust-icon.amber{background:#fef3c7;color:var(--amber)}
+[data-theme="dark"] .trust-icon.green{background:#064e3b}
+[data-theme="dark"] .trust-icon.purple{background:#1e1b4b}
+[data-theme="dark"] .trust-icon.amber{background:#451a03}
+
+/* ===== SECTION HEADINGS ===== */
+.section-heading{max-width:1100px;margin:48px auto 20px;padding:0 24px;display:flex;justify-content:space-between;align-items:baseline}
+.section-heading h2{font-size:1.5em;font-weight:700}
+.section-heading .see-all{color:var(--accent2);font-size:0.9em;font-weight:600}
+
+/* ===== CARDS GRID ===== */
+.articles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px;max-width:1100px;margin:0 auto 48px;padding:0 24px}
+.article-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--rad);text-decoration:none;color:inherit;display:flex;flex-direction:column;overflow:hidden;transition:transform 0.25s,box-shadow 0.25s;box-shadow:var(--shadow-sm)}
+.article-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.article-card.featured{border-color:var(--accent);border-width:2px;position:relative}
+.featured-badge{position:absolute;top:12px;left:12px;z-index:2;background:var(--accent);color:#fff;font-size:0.7em;font-weight:700;padding:4px 12px;border-radius:12px;text-transform:uppercase;letter-spacing:0.5px}
+
+.card-img{height:200px;background:var(--surface2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.card-img svg{width:80%;max-width:300px;height:auto}
+.card-img .overlay{position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(transparent,var(--surface2));pointer-events:none}
+
+.card-body{padding:20px 20px 16px;flex:1}
+.card-cat{display:inline-block;font-size:0.72em;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;padding:3px 10px;border-radius:10px;margin-bottom:10px}
+.card-cat.video{background:#ede9fe;color:#7c3aed}
+.card-cat.writing{background:#dbeafe;color:#2563eb}
+.card-cat.image{background:#fce7f3;color:#db2777}
+.card-cat.audio{background:#d1fae5;color:#059669}
+[data-theme="dark"] .card-cat.video{background:#2e1065;color:#c4b5fd}
+[data-theme="dark"] .card-cat.writing{background:#1e3a5f;color:#93c5fd}
+[data-theme="dark"] .card-cat.image{background:#4a1942;color:#f9a8d4}
+[data-theme="dark"] .card-cat.audio{background:#064e3b;color:#6ee7b7}
+
+.card-body h3{font-size:1.08em;font-weight:700;margin-bottom:6px;line-height:1.35}
+.card-body p{color:var(--text3);font-size:0.88em;line-height:1.55;margin-bottom:12px}
+.card-meta{display:flex;gap:12px;font-size:0.8em;color:var(--text3);align-items:center}
+.author-badge{width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.65em;font-weight:700;flex-shrink:0}
+.card-footer{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;border-top:1px solid var(--border);font-size:0.82em}
+.stars{color:var(--amber)}
+.read-time{color:var(--text3);font-size:0.85em}
+
+/* ===== SOCIAL SECTION ===== */
+.social-section{max-width:1100px;margin:0 auto 56px;padding:0 24px;text-align:center}
+.social-section h2{font-size:1.5em;margin-bottom:8px}
+.social-section>p{color:var(--text3);margin-bottom:32px;max-width:520px;margin-left:auto;margin-right:auto}
+.social-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.social-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rad);padding:28px 20px;text-align:center;text-decoration:none;color:inherit;transition:transform 0.25s,box-shadow 0.25s}
+.social-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.social-card .social-icon{width:44px;height:44px;margin:0 auto 12px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85em;color:#fff}
+.social-card:nth-child(1) .social-icon{background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af)}
+.social-card:nth-child(2) .social-icon{background:#ff0000}
+.social-card h4{font-size:1em;margin-bottom:4px}
+.social-card p{color:var(--text3);font-size:0.82em}
+
+/* ===== TRUST SECTION ===== */
+.trust-section{max-width:1100px;margin:0 auto 56px;padding:0 24px;text-align:center}
+.trust-section h2{font-size:1.5em;margin-bottom:36px}
+.trust-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px}
+.trust-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rad);padding:32px 22px;text-align:center;transition:box-shadow 0.25s;box-shadow:var(--shadow-sm)}
+.trust-card:hover{box-shadow:var(--shadow-md)}
+.trust-icon{font-size:2em;margin-bottom:14px}
+.trust-card h4{font-size:1em;margin-bottom:8px;font-weight:700}
+.trust-card p{color:var(--text3);font-size:0.85em;line-height:1.6}
+
+/* ===== FOOTER ===== */
+.footer{border-top:1px solid var(--border);background:var(--surface);padding:48px 24px 28px;margin-top:8px}
+.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.8fr 1fr 1fr;gap:40px}
+.footer-brand p{color:var(--text3);font-size:0.85em;line-height:1.65;margin-top:10px}
+.footer-col{display:flex;flex-direction:column;gap:8px}
+.footer-col h4{font-size:0.7em;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;font-weight:700}
+.footer-col a{color:var(--text2);font-size:0.85em}
+.footer-col a:hover{color:var(--accent2)}
+.footer-bottom{text-align:center;color:var(--text3);font-size:0.78em;margin-top:32px;padding-top:20px;border-top:1px solid var(--border)}
+
+/* ===== CTA ===== */
+.cta-bar{max-width:800px;margin:0 auto 56px;padding:40px 36px;text-align:center;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:var(--rad);color:#fff}
+.cta-bar h3{font-size:1.25em;margin-bottom:6px}
+.cta-bar p{margin-bottom:16px;opacity:0.9;font-size:0.95em}
+.cta-btn{display:inline-block;background:#fff;color:var(--accent2);padding:13px 28px;border-radius:10px;text-decoration:none;font-weight:700;font-size:0.95em;transition:transform 0.2s,box-shadow 0.2s}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.2)}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeSlide{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.animate-in{animation:fadeSlide 0.6s ease forwards;opacity:0}
+.animate-in:nth-child(2){animation-delay:0.1s}
+.animate-in:nth-child(3){animation-delay:0.2s}
+.animate-in:nth-child(4){animation-delay:0.3s}
+
+/* ===== SCROLL TO TOP ===== */
+.scroll-top-btn{position:fixed;bottom:24px;right:24px;z-index:99;width:42px;height:42px;border-radius:50%;background:var(--accent);color:#fff;border:none;cursor:pointer;font-size:1em;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity 0.3s,transform 0.3s;box-shadow:0 4px 12px rgba(99,102,241,0.3)}
+.scroll-top-btn.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+.scroll-top-btn:hover{background:var(--accent2)}
+
+/* ===== RESPONSIVE ===== */
 @media(max-width:768px){
-  .hero{margin:40px auto 36px;}
-  .hero h1{font-size:1.8em;}
-  .hero-stats{gap:28px;flex-wrap:wrap;}
-  .articles-grid{grid-template-columns:1fr;gap:18px;}
-  .footer-inner{grid-template-columns:1fr;gap:28px;}
-  .article-header h1{font-size:1.6em;}
-  .pros-cons{grid-template-columns:1fr;}
-  .trust-grid{grid-template-columns:1fr 1fr;}
-  .cta-bar{padding:32px 20px;}
+  .hero{grid-template-columns:1fr;gap:24px;padding:36px 20px 32px;text-align:center}
+  .hero-text p{margin:0 auto 24px}
+  .hero-stats{justify-content:center}
+  .hero-visual{order:-1}
+  .hero-visual svg{max-width:260px}
+  .trust-bar-inner{gap:24px;justify-content:space-around}
+  .articles-grid{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr;gap:24px}
+  .nav-links{display:none}
+  .mobile-menu-toggle{display:flex}
+  .nav-links.mobile-open{display:flex;position:fixed;top:var(--header-h);left:0;right:0;bottom:0;background:var(--bg);flex-direction:column;justify-content:center;gap:28px;padding:40px;z-index:99;list-style:none}
+  .nav-links.mobile-open a{font-size:1.2em}
 }
 @media(max-width:480px){
-  .trust-grid{grid-template-columns:1fr;}
-  .social-grid{grid-template-columns:1fr;}
-  .comparison-table{font-size:0.8em;}
-  .comparison-table th,.comparison-table td{padding:8px 10px;}
-  .scroll-top-btn{bottom:20px;right:20px;width:40px;height:40px;}
+  .hero h1{font-size:1.7em}
+  .trust-grid{grid-template-columns:1fr}
+  .section-heading{flex-direction:column;gap:4px}
 }
 </style>
 </head>
 <body>
+
+<!-- ========== NAVBAR ========== -->
 <nav class="navbar" role="navigation" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="/dhanu-decodes/" class="logo" aria-label="Dhanu Decodes home">
       <div class="logo-icon">DD</div>
       <span>Dhanu Decodes</span>
     </a>
-    <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-    </button>
-    <ul class="nav-links" role="menubar">
-      <li role="none"><a href="/dhanu-decodes/#reviews" role="menuitem">Reviews</a></li>
-      <li role="none"><a href="/dhanu-decodes/#social" role="menuitem">Follow Me</a></li>
-      <li role="none"><a href="/dhanu-decodes/#trust" role="menuitem">How I Test</a></li>
-      <li role="none"><a href="/dhanu-decodes/disclosure.html" role="menuitem">Disclosure</a></li>
-    </ul>
+    <div class="nav-right">
+      <ul class="nav-links" role="menubar" id="navLinks">
+        <li role="none"><a href="/dhanu-decodes/#reviews" role="menuitem">Reviews</a></li>
+        <li role="none"><a href="/dhanu-decodes/#social" role="menuitem">Connect</a></li>
+        <li role="none"><a href="/dhanu-decodes/#trust" role="menuitem">How I Test</a></li>
+        <li role="none"><a href="/dhanu-decodes/disclosure.html" role="menuitem">Disclosure</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode" title="Toggle theme"></button>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false" id="menuToggle">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
   </div>
 </nav>
 
-
+<!-- ========== HERO ========== -->
 <header class="hero">
-  <span class="hero-badge">New reviews every week</span>
-  <h1>I <span class="gradient-text">Break Down AI Tools</span> So You Can Pick The Right One</h1>
-  <p>I'm Dhanu — you might know me from Instagram and YouTube where I review AI tools. This is my blog. No AI-generated fluff, no fake reviews. Every tool here is something I've actually used.</p>
-  <div class="hero-stats">
-    <div class="stat-item"><div class="stat-num">50+</div><div class="stat-label">AI Tools Tested</div></div>
-    <div class="stat-item"><div class="stat-num">3 yrs</div><div class="stat-label">Creating Content</div></div>
-    <div class="stat-item"><div class="stat-num">12K+</div><div class="stat-label">Followers</div></div>
+  <div class="hero-text">
+    <h1>I Test AI Tools <span class="gradient-text">So You Don't Waste Time</span> On Bad Ones</h1>
+    <p>Hey, I'm Dhanu. I create content about AI tools on Instagram and YouTube. Every tool on this site has been tested by me personally. No AI-written reviews, no fake ratings — just honest opinions from a real creator.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="stat-val">100%</div><div class="stat-label">Hands-on Tested</div></div>
+      <div class="hero-stat"><div class="stat-val">$0</div><div class="stat-label">Paid Reviews</div></div>
+      <div class="hero-stat"><div class="stat-val">Weekly</div><div class="stat-label">New Reviews</div></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="hgrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#6366f1"/>
+          <stop offset="100%" stop-color="#a855f7"/>
+        </linearGradient>
+      </defs>
+      <!-- Monitor screen -->
+      <rect x="60" y="20" width="280" height="190" rx="16" fill="var(--surface2)" stroke="var(--border)" stroke-width="2"/>
+      <rect x="72" y="32" width="256" height="148" rx="8" fill="#1e1b4b"/>
+      <!-- Monitor stand -->
+      <rect x="175" y="212" width="50" height="8" rx="4" fill="var(--border)"/>
+      <rect x="185" y="220" width="30" height="20" rx="3" fill="var(--border)"/>
+      <!-- Screen content -->
+      <rect x="92" y="52" width="96" height="14" rx="7" fill="#6366f1" opacity="0.8"/>
+      <rect x="92" y="76" width="88" height="4" rx="2" fill="#8b8ba0" opacity="0.5"/>
+      <rect x="92" y="86" width="80" height="4" rx="2" fill="#8b8ba0" opacity="0.4"/>
+      <rect x="92" y="96" width="76" height="4" rx="2" fill="#8b8ba0" opacity="0.3"/>
+      <!-- AI chip visuals -->
+      <rect x="208" y="52" width="54" height="36" rx="8" fill="#6366f1" opacity="0.3"/>
+      <rect x="268" y="52" width="48" height="36" rx="8" fill="#a855f7" opacity="0.2"/>
+      <rect x="208" y="98" width="40" height="36" rx="8" fill="#0ea5e9" opacity="0.2"/>
+      <rect x="254" y="98" width="62" height="36" rx="8" fill="#22c55e" opacity="0.15"/>
+      <!-- Stars -->
+      <text x="92" y="130" font-size="14" fill="#d97706">★★★★★</text>
+    </svg>
   </div>
 </header>
 
+<!-- ========== TRUST BAR ========== -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item"><div class="trust-icon green">🔬</div>Every Tool Personally Tested</div>
+    <div class="trust-item"><div class="trust-icon purple">💳</div>I Pay For My Own Tools</div>
+    <div class="trust-item"><div class="trust-icon amber">🤝</div>No Paid Reviews Accepted</div>
+  </div>
+</div>
+
+<!-- ========== REVIEWS ========== -->
 <main>
   <div class="section-heading" id="reviews">
     <h2>Latest AI Tool Reviews</h2>
-    <p>Every tool tested by me. No sponsorships accepted unless disclosed.</p>
+    <a href="#reviews" class="see-all">All Reviews →</a>
   </div>
 
   <div class="articles-grid">
 
-    <!-- Card 1: AI Video Tools -->
-    <a href="/dhanu-decodes/articles/ai-video-tools.html" class="article-card">
+    <!-- Featured Card: AI Video Tools -->
+    <a href="/dhanu-decodes/articles/ai-video-tools.html" class="article-card featured animate-in">
+      <span class="featured-badge">Editor's Pick</span>
       <div class="card-img">
-        <div class="card-img-inner">
-          <div class="ai-chip-row">
-            <div class="ai-chip ai-chip-1">Runway<br><small>Gen-3</small></div>
-            <div class="ai-chip ai-chip-2">Pika<br><small>2.0</small></div>
-            <div class="ai-chip ai-chip-3">Klap AI</div>
-          </div>
-        </div>
-        <div class="img-overlay-label">AI Video Tools</div>
-        <div class="img-stars">★★★★★</div>
+        <div class="overlay"></div>
+        <svg viewBox="0 0 300 140" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="vg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6366f1"/><stop offset="1" stop-color="#a855f7"/></linearGradient>
+            <linearGradient id="vg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0ea5e9"/><stop offset="1" stop-color="#6366f1"/></linearGradient>
+          </defs>
+          <rect x="30" y="16" width="70" height="48" rx="10" fill="url(#vg1)" opacity="0.85"/>
+          <text x="65" y="45" text-anchor="middle" fill="white" font-size="9" font-weight="700">Runway</text>
+          <rect x="115" y="16" width="64" height="48" rx="10" fill="url(#vg2)" opacity="0.75"/>
+          <text x="147" y="45" text-anchor="middle" fill="white" font-size="9" font-weight="700">Pika 2.0</text>
+          <rect x="194" y="16" width="64" height="48" rx="10" fill="#22c55e" opacity="0.2"/>
+          <text x="226" y="45" text-anchor="middle" fill="#22c55e" font-size="9" font-weight="700">Klap AI</text>
+          <!-- Play button -->
+          <circle cx="150" cy="100" r="16" fill="var(--accent)" opacity="0.9"/>
+          <polygon points="145,92 145,108 158,100" fill="white"/>
+        </svg>
       </div>
       <div class="card-body">
-        <span class="card-category">AI Video Tools</span>
-        <h3>Best AI Video Generators in 2026</h3>
-        <p>I tested Runway, Pika, HeyGen, and 4 others. Here's which one actually makes usable videos for Instagram Reels and YouTube Shorts.</p>
+        <span class="card-cat video">AI Video</span>
+        <h3>Best AI Video Generators for Instagram Reels</h3>
+        <p>I tested 7 AI video tools to find which one actually makes usable content for social media. Runway, Pika, HeyGen compared.</p>
         <div class="card-meta">
-          <span class="author-avatar">D</span><span>Dhanu</span>
-          <span>8 min read</span><span>Updated July 2026</span>
+          <span class="author-badge">D</span><span>Dhanu</span>
+          <span>8 min read</span><span>Jul 2026</span>
         </div>
       </div>
       <div class="card-footer">
@@ -258,30 +328,28 @@ img{max-width:100%;height:auto;display:block;}
       </div>
     </a>
 
-    <!-- Card 2: AI Writing Tools -->
-    <a href="/dhanu-decodes/articles/ai-writing-tools.html" class="article-card">
+    <!-- Card 2: AI Writing -->
+    <a href="/dhanu-decodes/articles/ai-writing-tools.html" class="article-card animate-in">
       <div class="card-img">
-        <div class="card-img-inner">
-          <div class="img-search-bar">
-            <div class="img-search-icon"></div>
-            <span class="img-search-input">write blog post with AI...</span>
-          </div>
-          <div class="img-rank-list">
-            <div class="img-rank-row"><span class="img-rank-num">1</span><div class="img-rank-bar" style="width:180px"></div><span class="img-rank-label">ChatGPT</span></div>
-            <div class="img-rank-row"><span class="img-rank-num">2</span><div class="img-rank-bar" style="width:150px"></div><span class="img-rank-label">Claude</span></div>
-            <div class="img-rank-row"><span class="img-rank-num">3</span><div class="img-rank-bar" style="width:120px"></div><span class="img-rank-label">Jasper</span></div>
-          </div>
-        </div>
-        <div class="img-overlay-label">AI Writing</div>
-        <div class="img-stars">★★★★½</div>
+        <div class="overlay"></div>
+        <svg viewBox="0 0 300 140" xmlns="http://www.w3.org/2000/svg">
+          <rect x="40" y="20" width="220" height="32" rx="16" fill="var(--surface2)" stroke="var(--border)" stroke-width="1.5"/>
+          <text x="60" y="42" fill="var(--text3)" font-size="9">write best AI tools blog...</text>
+          <text x="40" y="72" fill="var(--accent)" font-size="12" font-weight="800">1.</text>
+          <rect x="60" y="63" width="160" height="6" rx="3" fill="var(--accent)" opacity="0.6"/>
+          <text x="40" y="96" fill="var(--text3)" font-size="11" font-weight="700">2.</text>
+          <rect x="60" y="87" width="130" height="6" rx="3" fill="var(--text3)" opacity="0.3"/>
+          <text x="40" y="120" fill="var(--text3)" font-size="10" font-weight="700">3.</text>
+          <rect x="60" y="111" width="100" height="6" rx="3" fill="var(--text3)" opacity="0.2"/>
+        </svg>
       </div>
       <div class="card-body">
-        <span class="card-category">AI Writing</span>
+        <span class="card-cat writing">AI Writing</span>
         <h3>Best AI Writing Tools for Content Creators</h3>
-        <p>As someone who writes scripts, captions, and blog posts daily — I tested 6 AI writing tools to find the best one for creators.</p>
+        <p>I write scripts, captions, and blog posts daily. Tested ChatGPT, Claude, Jasper and 3 others to find the best one for creators.</p>
         <div class="card-meta">
-          <span class="author-avatar">D</span><span>Dhanu</span>
-          <span>10 min read</span><span>Updated July 2026</span>
+          <span class="author-badge">D</span><span>Dhanu</span>
+          <span>10 min read</span><span>Jul 2026</span>
         </div>
       </div>
       <div class="card-footer">
@@ -290,255 +358,208 @@ img{max-width:100%;height:auto;display:block;}
       </div>
     </a>
 
-    <!-- Card 3: AI Image Tools (Coming Soon) -->
-    <a href="/dhanu-decodes/articles/ai-image-tools.html" class="article-card">
+    <!-- Card 3: AI Image -->
+    <a href="/dhanu-decodes/articles/ai-image-tools.html" class="article-card animate-in">
       <div class="card-img">
-        <div class="card-img-inner">
-          <div class="ai-chip-row">
-            <div class="ai-chip ai-chip-1">Midjourney<br><small>v7</small></div>
-            <div class="ai-chip ai-chip-2">DALL·E 3</div>
-            <div class="ai-chip ai-chip-3">SD 3.0</div>
-          </div>
-        </div>
-        <div class="img-overlay-label">AI Image Gen</div>
+        <div class="overlay"></div>
+        <svg viewBox="0 0 300 140" xmlns="http://www.w3.org/2000/svg">
+          <rect x="24" y="16" width="70" height="70" rx="10" fill="#6366f1" opacity="0.1"/>
+          <circle cx="45" cy="40" r="8" fill="#6366f1" opacity="0.4"/>
+          <rect x="108" y="16" width="70" height="70" rx="10" fill="#0ea5e9" opacity="0.1"/>
+          <rect x="119" y="27" width="48" height="48" rx="6" fill="#0ea5e9" opacity="0.25"/>
+          <rect x="192" y="16" width="70" height="70" rx="10" fill="#22c55e" opacity="0.1"/>
+          <polygon points="227,25 262,50 227,75 192,50" fill="#22c55e" opacity="0.2"/>
+          <text x="150" y="112" text-anchor="middle" fill="var(--text3)" font-size="11">Coming August 2026</text>
+        </svg>
       </div>
       <div class="card-body">
-        <span class="card-category">AI Image Gen</span>
-        <h3>Midjourney vs DALL·E vs Stable Diffusion</h3>
-        <p>Creating thumbnails for my YouTube channel using all 3. Which one makes the best social media graphics?</p>
+        <span class="card-cat image">AI Images</span>
+        <h3>Midjourney vs DALL·E 3 vs Stable Diffusion</h3>
+        <p>Making YouTube thumbnails with all three. Honest comparison of quality, speed, and value for social media creators.</p>
         <div class="card-meta">
-          <span class="author-avatar">D</span><span>Dhanu</span>
-          <span>Coming soon</span><span>In progress</span>
+          <span class="author-badge">D</span><span>Dhanu</span>
+          <span>Coming soon</span><span>Testing now</span>
         </div>
       </div>
       <div class="card-footer">
-        <span class="stars">Testing now</span>
-        <span class="read-time">ETA: August 2026</span>
+        <span class="stars">In Progress</span>
+        <span class="read-time">ETA: Aug 2026</span>
       </div>
     </a>
 
-    <!-- Card 4: AI Audio Tools (Coming Soon) -->
-    <a href="/dhanu-decodes/articles/ai-audio-tools.html" class="article-card">
+    <!-- Card 4: AI Audio -->
+    <a href="/dhanu-decodes/articles/ai-audio-tools.html" class="article-card animate-in">
       <div class="card-img">
-        <div class="card-img-inner">
-          <div class="ai-chip-row">
-            <div class="ai-chip ai-chip-1">ElevenLabs<br><small>TTS</small></div>
-            <div class="ai-chip ai-chip-2">Suno v4</div>
-            <div class="ai-chip ai-chip-3">Uberduck<br><small>AI</small></div>
-          </div>
-        </div>
-        <div class="img-overlay-label">AI Audio</div>
+        <div class="overlay"></div>
+        <svg viewBox="0 0 300 140" xmlns="http://www.w3.org/2000/svg">
+          <rect x="30" y="20" width="50" height="70" rx="8" fill="#818cf8" opacity="0.15"/>
+          <rect x="35" y="50" width="8" height="30" rx="2" fill="#818cf8" opacity="0.5"/>
+          <rect x="48" y="40" width="8" height="40" rx="2" fill="#818cf8" opacity="0.6"/>
+          <rect x="61" y="55" width="8" height="25" rx="2" fill="#818cf8" opacity="0.4"/>
+          <text x="110" y="50" fill="#818cf8" font-size="18" font-weight="800">♪</text>
+          <text x="110" y="80" fill="var(--text3)" font-size="11">ElevenLabs · Suno · Murf</text>
+          <text x="150" y="112" text-anchor="middle" fill="var(--text3)" font-size="11">Coming Sep 2026</text>
+        </svg>
       </div>
       <div class="card-body">
-        <span class="card-category">AI Audio</span>
+        <span class="card-cat audio">AI Audio</span>
         <h3>Best AI Voice & Music Tools for Creators</h3>
-        <p>Voiceovers for my videos, background music, sound effects — all AI generated. Testing the top tools.</p>
+        <p>Voiceovers, background music, sound effects — all AI generated. Testing ElevenLabs, Suno, and Murf for creator workflows.</p>
         <div class="card-meta">
-          <span class="author-avatar">D</span><span>Dhanu</span>
+          <span class="author-badge">D</span><span>Dhanu</span>
           <span>Coming soon</span><span>Researching</span>
         </div>
       </div>
       <div class="card-footer">
         <span class="stars">Planning</span>
-        <span class="read-time">ETA: September 2026</span>
+        <span class="read-time">ETA: Sep 2026</span>
       </div>
     </a>
-  </div><!-- /articles-grid -->
 
-  <!-- Social Media Section -->
+  </div>
+
+  <!-- ========== SOCIAL ========== -->
   <section class="social-section" id="social">
-    <h2>Follow Me For Daily AI Content</h2>
-    <p>I post AI tool reviews, news, and tutorials on Instagram and YouTube almost every day. New blog reviews are announced there first.</p>
+    <h2>Follow My AI Journey</h2>
+    <p>I post AI tool reviews, quick tips, and behind-the-scenes on Instagram and YouTube. New blog reviews drop every week.</p>
     <div class="social-grid">
       <a href="https://instagram.com/dhanu_decodes" target="_blank" rel="noopener" class="social-card">
         <div class="social-icon">IG</div>
         <h4>Instagram — @dhanu_decodes</h4>
-        <p>AI tool reviews, reels, and news updates</p>
+        <p>Quick AI tool reviews, Reels, and daily tips</p>
       </a>
       <a href="https://youtube.com/@dhanudecodes" target="_blank" rel="noopener" class="social-card">
         <div class="social-icon">YT</div>
         <h4>YouTube — Dhanu Decodes</h4>
-        <p>In-depth AI tool tutorials and comparisons</p>
+        <p>In-depth tutorials and honest comparisons</p>
       </a>
-    </div>
-    <div style="margin-top:24px;">
-      <h4 style="color:var(--text2);">This Blog</h4>
-      <p style="color:var(--text3);font-size:0.9em;">New long-form review every week — directly to this page.</p>
     </div>
   </section>
 
-  <!-- Newsletter CTA -->
+  <!-- ========== CTA ========== -->
   <div class="cta-bar">
-    <h3>Get the best AI tools in your inbox every Saturday</h3>
-    <p>One email per week. No spam. Just my latest findings.</p>
-    <a href="https://instagram.com/dhanu_decodes" target="_blank" rel="noopener" class="cta-btn">Subscribe (Free)</a>
+    <h3>New review every week — never miss one</h3>
+    <p>Follow me on Instagram for updates. I announce every new blog post there first.</p>
+    <a href="https://instagram.com/dhanu_decodes" target="_blank" rel="noopener" class="cta-btn">Follow on Instagram →</a>
   </div>
 
-  <!-- Trust Section -->
+  <!-- ========== TRUST ========== -->
   <section class="trust-section" id="trust">
     <h2>Here's How I Test Every AI Tool</h2>
     <div class="trust-grid">
       <div class="trust-card">
-        <div class="trust-icon" style="font-size:2em;">🔬</div>
+        <div class="trust-icon">🔬</div>
         <h4>I Actually Use Them</h4>
-        <p>No screenshots from other people. Every tool in my reviews was used by me — for real projects, real deadlines.</p>
+        <p>No screenshots from other people. Every tool reviewed here was used by me for real projects with real deadlines.</p>
       </div>
       <div class="trust-card">
-        <div class="trust-icon" style="font-size:2em;">💳</div>
+        <div class="trust-icon">💳</div>
         <h4>I Pay For Every Tool</h4>
-        <p>Unless a company gives me free access (which I always disclose), I pay out of pocket. This keeps my reviews honest.</p>
+        <p>Unless a company gives me free access (which I always disclose), I pay out of my own pocket. This keeps my reviews honest.</p>
       </div>
       <div class="trust-card">
-        <div class="trust-icon" style="font-size:2em;">🤝</div>
+        <div class="trust-icon">🤝</div>
         <h4>No Paid Reviews</h4>
-        <p>I've turned down paid sponsorships where they wanted a guaranteed positive review. If a tool is bad, I'll say so.</p>
+        <p>I've turned down sponsorships that wanted a guaranteed positive review. If a tool is bad, I'll say so clearly.</p>
       </div>
       <div class="trust-card">
-        <div class="trust-icon" style="font-size:2em;">🔄</div>
+        <div class="trust-icon">🔄</div>
         <h4>Updated Regularly</h4>
-        <p>AI tools change fast. I revisit and update my reviews every few months — check the "Updated" date on each post.</p>
+        <p>AI tools change fast. I revisit my reviews every few months — check the "Updated" date on each post.</p>
       </div>
     </div>
   </section>
 </main>
 
+<!-- ========== FOOTER ========== -->
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-        <div style="width:28px;height:28px;background:linear-gradient(135deg,#6366f1,#818cf8);border-radius:7px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:0.6em;color:#fff;">DD</div>
-        <strong style="font-size:1em;">Dhanu Decodes</strong>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+        <div style="width:28px;height:28px;background:linear-gradient(135deg,#6366f1,#818cf8);border-radius:7px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:0.6em;color:#fff">DD</div>
+        <strong>Dhanu Decodes</strong>
       </div>
-      <p>AI tools tested by a real creator. No bots, no AI-written reviews — just honest opinions from someone who actually uses these tools.</p>
-      <p style="margin-top:12px;">
-        <a href="https://instagram.com/dhanu_decodes" style="color:#818cf8;margin-right:14px;">Instagram</a>
-        <a href="https://youtube.com/@dhanudecodes" style="color:#818cf8;">YouTube</a>
+      <p>AI tools tested by a real creator. No AI-written reviews — just honest opinions from someone who actually uses these tools daily.</p>
+      <p style="margin-top:10px">
+        <a href="https://instagram.com/dhanu_decodes" style="margin-right:12px">Instagram</a>
+        <a href="https://youtube.com/@dhanudecodes">YouTube</a>
       </p>
     </div>
     <div class="footer-col">
-      <h4>REVIEWS</h4>
+      <h4>Reviews</h4>
       <a href="/dhanu-decodes/articles/ai-video-tools.html">AI Video Tools</a>
       <a href="/dhanu-decodes/articles/ai-writing-tools.html">AI Writing Tools</a>
       <a href="/dhanu-decodes/articles/ai-image-tools.html">AI Image Tools</a>
       <a href="/dhanu-decodes/articles/ai-audio-tools.html">AI Audio Tools</a>
     </div>
     <div class="footer-col">
-      <h4>LINKS</h4>
+      <h4>Links</h4>
       <a href="/dhanu-decodes/disclosure.html">Affiliate Disclosure</a>
       <a href="https://instagram.com/dhanu_decodes">Instagram</a>
       <a href="https://youtube.com/@dhanudecodes">YouTube</a>
       <a href="#top">Back to Top</a>
     </div>
   </div>
-  <div class="footer-bottom">
-    &copy; 2026 Dhanu Decodes. All rights reserved.
-  </div>
+  <div class="footer-bottom">&copy; 2026 Dhanu Decodes. All rights reserved.</div>
 </footer>
 
+<button class="scroll-top-btn" aria-label="Scroll to top" id="scrollTopBtn">▲</button>
 
-<button class="scroll-top-btn" aria-label="Scroll to top">▲</button>
-
-<!-- Load components first, then main app logic -->
 <script>
-/**
- * Dhanu Decodes — Main JavaScript
- * Scroll animations, mobile menu, scroll-to-top
- */
-(function () {
-  'use strict';
+(function(){
+'use strict';
+var html=document.documentElement;
 
-  // Wait for components to load before initializing
-  function init() {
-    initMobileMenu();
-    initScrollAnimations();
-    initScrollToTop();
-    initSmoothScroll();
-  }
+// Theme toggle
+var themeToggle=document.getElementById('themeToggle');
+themeToggle.addEventListener('click',function(){
+  var current=html.getAttribute('data-theme');
+  var next=current==='dark'?'light':'dark';
+  html.setAttribute('data-theme',next);
+  try{localStorage.setItem('dd-theme',next)}catch(e){}
+});
 
-  // --- Mobile Menu ---
-  function initMobileMenu() {
-    const toggle = document.querySelector('.mobile-menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    if (!toggle || !navLinks) return;
+// Load saved theme — default light
+try{
+  var saved=localStorage.getItem('dd-theme');
+  if(saved)html.setAttribute('data-theme',saved);
+}catch(e){}
 
-    toggle.addEventListener('click', function () {
-      const expanded = toggle.getAttribute('aria-expanded') === 'true';
-      toggle.setAttribute('aria-expanded', String(!expanded));
-      toggle.classList.toggle('active');
-      navLinks.classList.toggle('active');
-    });
+// Mobile menu
+var menuToggle=document.getElementById('menuToggle');
+var navLinks=document.getElementById('navLinks');
+menuToggle.addEventListener('click',function(){
+  var expanded=menuToggle.getAttribute('aria-expanded')==='true';
+  menuToggle.setAttribute('aria-expanded',String(!expanded));
+  menuToggle.classList.toggle('active');
+  navLinks.classList.toggle('mobile-open');
+});
+navLinks.querySelectorAll('a').forEach(function(a){
+  a.addEventListener('click',function(){
+    menuToggle.setAttribute('aria-expanded','false');
+    menuToggle.classList.remove('active');
+    navLinks.classList.remove('mobile-open');
+  });
+});
 
-    // Close menu on link click
-    navLinks.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        toggle.setAttribute('aria-expanded', 'false');
-        toggle.classList.remove('active');
-        navLinks.classList.remove('active');
-      });
-    });
-  }
+// Scroll to top
+var scrollBtn=document.getElementById('scrollTopBtn');
+window.addEventListener('scroll',function(){
+  scrollBtn.classList.toggle('visible',window.scrollY>400);
+});
+scrollBtn.addEventListener('click',function(){
+  window.scrollTo({top:0,behavior:'smooth'});
+});
 
-  // --- Scroll Animations (fade in cards on scroll) ---
-  function initScrollAnimations() {
-    var cards = document.querySelectorAll('.article-card:not(.visible)');
-    if (!cards.length) return;
-
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
-
-    cards.forEach(function (card, i) {
-      card.style.transitionDelay = (i * 0.1) + 's';
-      observer.observe(card);
-    });
-  }
-
-  // --- Scroll to Top Button ---
-  function initScrollToTop() {
-    var btn = document.querySelector('.scroll-top-btn');
-    if (!btn) return;
-
-    var ticking = false;
-    window.addEventListener('scroll', function () {
-      if (!ticking) {
-        requestAnimationFrame(function () {
-          btn.classList.toggle('visible', window.scrollY > 500);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    });
-
-    btn.addEventListener('click', function () {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
-  // --- Smooth Scroll for Anchor Links ---
-  function initSmoothScroll() {
-    document.addEventListener('click', function (e) {
-      var link = e.target.closest('a[href^="#"]');
-      if (!link) return;
-      var target = document.querySelector(link.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-  }
-
-  // Run on DOMContentLoaded (components now baked into HTML)
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+// Smooth scroll for anchor links
+document.addEventListener('click',function(e){
+  var link=e.target.closest('a[href^="#"]');
+  if(!link)return;
+  var target=document.querySelector(link.getAttribute('href'));
+  if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth'})}
+});
 })();
 </script>
+
 </body>
 </html>
